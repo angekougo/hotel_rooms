@@ -18,13 +18,13 @@
 - **Widgets de base utilisés (x8+)** : `ListView`, `GridView`, `Stack`, `Card`, `ClipRRect`, `Form`, `DropdownButton`, `InkWell`, Etc. .
 - **Architecture Propre** : Séparation stricte UI/Données (`lib/models` & `lib/data`).
 - **Widgets Réutilisables (x3)** : `CustomButton`, `CustomInput`, `roomCard`.
-- **Test**: Ajout de test pour le widget d'affichage de chambre.
+- **Test**: Ajout de test pour le widget d'affichage de la liste de chambres.
 
 ## Instructions de Lancement
 1. **Cloner le dépôt** :
    ```bash
-   git clone <URL_DE_VOTRE_REPO_GITHUB>
-   cd gastronomiam
+   git clone https://github.com/angekougo/hotel_rooms
+   cd hotel_rooms
    ```
 2. **Installer les dépendances** :
    ```bash
