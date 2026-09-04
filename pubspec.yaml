@@ -1,0 +1,31 @@
+name: hotel_rooms
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.6.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  go_router: ^16.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/2.png
+    - assets/images/3.png
+    - assets/images/4.png
+    - assets/images/rooms/c1.jpg
+    - assets/images/rooms/c2.jpg
+    - assets/images/rooms/c3.jpg
+    - assets/images/rooms/c4.jpg
+    - assets/images/rooms/c5.jpg
+    - assets/images/rooms/c6.jpg
