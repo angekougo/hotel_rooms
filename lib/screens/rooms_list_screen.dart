@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hotel_rooms/widgets/custom_room_card.dart';
 
-import '../datas/room_mock.dart';
+import '../datas/room_repository.dart';
 
 class RoomsListScreen extends StatefulWidget {
   const RoomsListScreen({super.key});
@@ -17,12 +17,12 @@ class _RoomsListScreenState extends State<RoomsListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final filteredRooms = rooms
-        .where((r) {
-          final macthesSearch = r.name.toLowerCase().contains(_searchQuery.toLowerCase());
-          final matchesType = _selectedType == 'Tous' || r.type == _selectedType;
-          return macthesSearch && matchesType;
-        }).toList();
+    final filteredRooms = RoomRepository.getAll().where((r) {
+      final macthesSearch =
+          r.name.toLowerCase().contains(_searchQuery.toLowerCase());
+      final matchesType = _selectedType == 'Tous' || r.type == _selectedType;
+      return macthesSearch && matchesType;
+    }).toList();
 
     final double screenWidth = MediaQuery.of(context).size.width;
     final int crossAxisCount = screenWidth > 600 ? 3 : 2;
@@ -31,8 +31,10 @@ class _RoomsListScreenState extends State<RoomsListScreen> {
       appBar: AppBar(
         actions: [
           IconButton.filled(
-              onPressed: () {
-                context.push('/add-room');
+              onPressed: () async {
+                await context
+                    .push('/add-room'); // attend le retour de AddRoomScreen
+                setState(() {});
               },
               icon: Icon(Icons.add))
         ],

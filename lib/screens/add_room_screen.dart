@@ -3,6 +3,9 @@ import 'package:go_router/go_router.dart';
 import 'package:hotel_rooms/widgets/custom_button.dart';
 import 'package:hotel_rooms/widgets/custom_input.dart';
 
+import '../datas/room_repository.dart';
+import '../models/room.dart';
+
 class AddRoomScreen extends StatefulWidget {
   const AddRoomScreen({super.key});
 
@@ -28,6 +31,21 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
 
   void _submitData() {
     if (_formKey.currentState!.validate()) {
+      final newRoom = Room(
+        id: DateTime.now()
+            .millisecondsSinceEpoch
+            .toString(), // id unique simple
+        number: _roomNumberController.text,
+        name: _roomNameController.text,
+        type: _roomTypeController.text,
+        description: 'Chambre ajoutée manuellement.',
+        pricePerNight: int.parse(_roomPriceController.text),
+        imageUrl:
+            'assets/images/rooms/c1.jpg', // image par défaut, pas de champ upload
+      );
+
+      RoomRepository.add(newRoom);
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Chambre ajoutée avec succès !')),
       );
@@ -61,7 +79,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                       const SizedBox(width: 16),
                       Expanded(
                           child: CustomInput(
-                            controller: _roomTypeController,
+                        controller: _roomTypeController,
                         label: 'Type de chambre',
                         validator: (value) => value!.isEmpty
                             ? 'Type de chambre obligatoire'
@@ -73,19 +91,20 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                     children: [
                       Expanded(
                           child: CustomInput(
-                            controller: _roomPriceController,
-                            keyboardType: TextInputType.number,
+                              controller: _roomPriceController,
+                              keyboardType: TextInputType.number,
                               label: 'Prix par nuit',
                               validator: (value) {
                                 if (value!.isEmpty) return 'Prix obligatoire';
-                                if (int.tryParse(value) == null) return 'Entrer un nombre';
+                                if (double.tryParse(value) == null)
+                                  return 'Entrer un nombre';
                                 return null;
                               })),
                       const SizedBox(width: 16),
                       Expanded(
                           child: CustomInput(
-                            controller: _roomNumberController,
-                            keyboardType: TextInputType.number,
+                        controller: _roomNumberController,
+                        keyboardType: TextInputType.number,
                         label: 'Numéro de chambre',
                         validator: (value) => value!.isEmpty
                             ? 'Type de chambre obligatoire'
@@ -113,7 +132,8 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                     label: 'Prix par nuit',
                     validator: (value) {
                       if (value!.isEmpty) return 'Prix obligatoire';
-                      if (int.tryParse(value) == null) return 'Entrer un nombre';
+                      if (double.tryParse(value) == null)
+                        return 'Entrer un nombre';
                       return null;
                     },
                   ),
