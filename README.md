@@ -35,3 +35,19 @@
    flutter run
    ```
 
+   ## Lancer les tests
+
+Le projet contient 4 fichiers de test (`test/room_test.dart`, `test/room_repository_test.dart`,
+`test/rooms_list_screen_test.dart`, `test/add_room_screen_test.dart`) couvrant le modèle `Room`,
+le `RoomRepository`, l'écran de liste et le formulaire d'ajout.
+
+Pour lancer l'ensemble de la suite de tests :
+```bash
+flutter test
+```
+
+Pour lancer un seul fichier :
+```bash
+flutter test test/room_repository_test.dart
+```
+
