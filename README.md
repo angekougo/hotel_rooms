@@ -9,15 +9,15 @@
 ## Fonctionnalités
 - **4 écrans principaux**: Accueil, Liste de chambres, Détails d'une chambre, Formulaire d'ajout d'une chambre.
 - **Navigation**: GoRouter avec passage de paramètre.
-- **Liste avec option de recherche et filtre**: Effectuer des recherches à l'aide de texte et filtres par type de chambres
-- **Formulaire d'ajout de chambre avec validation**: champs obligatoire, validation de format numérique.
-- **Thème mode**: Switcher en thème sombre et clair en un clic
-- **Adaptation responsible**: Grille de deux (2) chambre par ligne horizontale sur mobile et trois (3) sur tablettes.
+- **Liste avec option de recherche et filtrage**: Effectuer des recherches à l'aide de texte et filtrage via une liste déroulante.
+- **Formulaire d'ajout d'une chambre avec validation**: champs obligatoire, validation de format numérique.
+- **Thème mode**: Switcher en thème sombre et clair en un clic à l'aide d'un floatingActionButton
+- **Adaptation responsible**: Grille de deux (2) chambres par ligne horizontale sur mobile et trois (3) sur tablettes.
 
 ## Critères Techniques validés
 - **Widgets de base utilisés (x8+)** : `ListView`, `GridView`, `Stack`, `Card`, `ClipRRect`, `Form`, `DropdownButton`, `InkWell`, Etc. .
 - **Architecture Propre** : Séparation stricte UI/Données (`lib/models` & `lib/data`).
-- **Widgets Réutilisables (x3)** : `CustomButton`, `CustomInput`, `roomCard`.
+- **Widgets Réutilisables (x3)** : `CustomButton`, `CustomInput`, `CustomRoomCard`.
 - **Test**: Ajout de test pour le widget d'affichage de la liste de chambres.
 
 ## Instructions de Lancement

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../models/room.dart';
 
-class RoomCard extends StatelessWidget {
+class CustomRoomCard extends StatelessWidget {
   final Room room;
   final VoidCallback onTap;
 
-  const RoomCard({super.key, required this.room, required this.onTap});
+  const CustomRoomCard({super.key, required this.room, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

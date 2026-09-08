@@ -44,6 +44,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
+            autovalidateMode: AutovalidateMode.onUnfocus,
             key: _formKey,
             child: ListView(
               children: [

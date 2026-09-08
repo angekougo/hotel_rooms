@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hotel_rooms/widgets/custom_room_card.dart';
 
 import '../datas/room_mock.dart';
-import '../widgets/room_card.dart';
 
 class RoomsListScreen extends StatefulWidget {
   const RoomsListScreen({super.key});
@@ -57,7 +57,7 @@ class _RoomsListScreenState extends State<RoomsListScreen> {
           DropdownButton<String>(
             value: _selectedType,
             items: ['Tous', 'Standard', 'Deluxe', 'Suite', 'Studio']
-                .map((cat) => DropdownMenuItem(value: cat, child: Text(cat)))
+                .map((t) => DropdownMenuItem(value: t, child: Text(t)))
                 .toList(),
             onChanged: (val) => setState(() => _selectedType = val!),
           ),
@@ -76,7 +76,7 @@ class _RoomsListScreenState extends State<RoomsListScreen> {
                       itemCount: filteredRooms.length,
                       itemBuilder: (context, index) {
                         final room = filteredRooms[index];
-                        return RoomCard(
+                        return CustomRoomCard(
                           room: room,
                           onTap: () {
                             context.push('/room/${room.id}');
