@@ -24,6 +24,11 @@ class _RoomsListScreenState extends State<RoomsListScreen> {
       return macthesSearch && matchesType;
     }).toList();
 
+    final roomTypes = <String>[
+      'Tous',
+      ...{for (final room in RoomRepository.getAll()) room.type},
+    ];
+
     final double screenWidth = MediaQuery.of(context).size.width;
     final int crossAxisCount = screenWidth > 600 ? 3 : 2;
 
@@ -58,7 +63,7 @@ class _RoomsListScreenState extends State<RoomsListScreen> {
           ),
           DropdownButton<String>(
             value: _selectedType,
-            items: ['Tous', 'Standard', 'Deluxe', 'Suite', 'Studio']
+            items: roomTypes
                 .map((t) => DropdownMenuItem(value: t, child: Text(t)))
                 .toList(),
             onChanged: (val) => setState(() => _selectedType = val!),
