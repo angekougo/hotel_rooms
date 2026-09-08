@@ -96,8 +96,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                               label: 'Prix par nuit',
                               validator: (value) {
                                 if (value!.isEmpty) return 'Prix obligatoire';
-                                if (double.tryParse(value) == null)
-                                  return 'Entrer un nombre';
+                                if (double.tryParse(value) == null) return 'Entrer un nombre';
                                 return null;
                               })),
                       const SizedBox(width: 16),
@@ -132,8 +131,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                     label: 'Prix par nuit',
                     validator: (value) {
                       if (value!.isEmpty) return 'Prix obligatoire';
-                      if (double.tryParse(value) == null)
-                        return 'Entrer un nombre';
+                      if (double.tryParse(value) == null) return 'Entrer un nombre';
                       return null;
                     },
                   ),
