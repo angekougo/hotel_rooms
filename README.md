@@ -16,9 +16,9 @@
 
 ## Critères Techniques validés
 - **Widgets de base utilisés (x8+)** : `ListView`, `GridView`, `Stack`, `Card`, `ClipRRect`, `Form`, `DropdownButton`, `InkWell`, Etc. .
-- **Architecture Propre** : Séparation stricte UI/Données (`lib/models` & `lib/data`).
+- **Architecture Propre** : Séparation stricte UI/Données (`lib/models`, `lib/data`, `lib/screens` & `test`).
 - **Widgets Réutilisables (x3)** : `CustomButton`, `CustomInput`, `CustomRoomCard`.
-- **Test**: Ajout de test pour le widget d'affichage de la liste de chambres.
+- **Test**: Ajout de quatres (4) fichiers de tests, (`test/add_room_screen_test.dart`, `test/room_repository_test.dart`;`test/room_repository_test.dart` & `test/rooms_list_screen_test.dart`).
 
 ## Instructions de Lancement
 1. **Cloner le dépôt** :
