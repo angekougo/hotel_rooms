@@ -106,7 +106,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                         keyboardType: TextInputType.number,
                         label: 'Numéro de chambre',
                         validator: (value) => value!.isEmpty
-                            ? 'Type de chambre obligatoire'
+                            ? 'Numéro de chambre obligatoire'
                             : null,
                       ))
                     ],
@@ -123,7 +123,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                     controller: _roomTypeController,
                     label: 'Type de chambre',
                     validator: (value) =>
-                        value!.isEmpty ? 'Nom obligatoire' : null,
+                        value!.isEmpty ? 'Type de chambre obligatoire' : null,
                   ),
                   const SizedBox(height: 16),
                   CustomInput(
@@ -140,7 +140,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                     controller: _roomNumberController,
                     label: 'Numéro de chambre',
                     validator: (value) =>
-                        value!.isEmpty ? 'Nom obligatoire' : null,
+                        value!.isEmpty ? 'Numéro de chambre obligatoire' : null,
                   ),
                 ],
                 const SizedBox(height: 24),

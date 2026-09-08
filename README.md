@@ -37,9 +37,7 @@
 
    ## Lancer les tests
 
-Le projet contient 4 fichiers de test (`test/room_test.dart`, `test/room_repository_test.dart`,
-`test/rooms_list_screen_test.dart`, `test/add_room_screen_test.dart`) couvrant le modèle `Room`,
-le `RoomRepository`, l'écran de liste et le formulaire d'ajout.
+Le projet contient 4 dossiers de test contenus dans le dossier test principal (`test/datas`, `test/models`, `test/screens`, `test/utils`).Chaque sous dossier de test contient un ou plusieurs fichiers de test.
 
 Pour lancer l'ensemble de la suite de tests :
 ```bash
@@ -48,6 +46,17 @@ flutter test
 
 Pour lancer un seul fichier :
 ```bash
-flutter test test/room_repository_test.dart
+flutter test test/models/room_test.dart
 ```
-
+```bash
+flutter test test/datas/room_repository_test.dart
+```
+```bash
+flutter test test/utils/room_filter_test.dart
+```
+```bash
+flutter test test/screens/rooms_list_screen_test.dart
+```
+```bash
+flutter test test/screens/add_room_screen_test.dart
+```

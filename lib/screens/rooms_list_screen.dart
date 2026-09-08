@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hotel_rooms/widgets/custom_room_card.dart';
 
 import '../datas/room_repository.dart';
+import '../utils/room_filter.dart';
 
 class RoomsListScreen extends StatefulWidget {
   const RoomsListScreen({super.key});
@@ -14,20 +15,25 @@ class RoomsListScreen extends StatefulWidget {
 class _RoomsListScreenState extends State<RoomsListScreen> {
   String _searchQuery = '';
   String _selectedType = 'Tous';
+  final FocusNode _searchFocusNode = FocusNode();
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchFocusNode.dispose();
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final filteredRooms = RoomRepository.getAll().where((r) {
-      final macthesSearch =
-          r.name.toLowerCase().contains(_searchQuery.toLowerCase());
-      final matchesType = _selectedType == 'Tous' || r.type == _selectedType;
-      return macthesSearch && matchesType;
-    }).toList();
-
-    final roomTypes = <String>[
-      'Tous',
-      ...{for (final room in RoomRepository.getAll()) room.type},
-    ];
+    final allRooms = RoomRepository.getAll();
+    final filteredRooms = filterRooms(
+      allRooms,
+      searchQuery: _searchQuery,
+      selectedType: _selectedType,
+    );
+    final roomTypes = availableRoomTypes(allRooms);
 
     final double screenWidth = MediaQuery.of(context).size.width;
     final int crossAxisCount = screenWidth > 600 ? 3 : 2;
@@ -49,6 +55,8 @@ class _RoomsListScreenState extends State<RoomsListScreen> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
+              controller: _searchController,
+              focusNode: _searchFocusNode,
               decoration: const InputDecoration(
                 labelText: 'Rechercher une chambre',
                 prefixIcon: Icon(Icons.search),
@@ -68,6 +76,24 @@ class _RoomsListScreenState extends State<RoomsListScreen> {
                 .toList(),
             onChanged: (val) => setState(() => _selectedType = val!),
           ),
+          if (_searchQuery.isNotEmpty || _selectedType != 'Tous')
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: TextButton.icon(
+                  onPressed: () {
+                    setState(() {
+                      _searchQuery = '';
+                      _selectedType = 'Tous';
+                      _searchController.clear();
+                    });
+                  },
+                  icon: const Icon(Icons.clear),
+                  label: const Text('Réinitialiser les filtres'),
+                ),
+              ),
+            ),
           Expanded(
             child: filteredRooms.isEmpty
                 ? const Center(child: Text('Aucune chambre trouvée.'))
