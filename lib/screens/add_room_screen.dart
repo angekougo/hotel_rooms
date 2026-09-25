@@ -20,6 +20,8 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
   final _roomPriceController = TextEditingController();
   final _roomNumberController = TextEditingController();
 
+  String _selectedImage = 'assets/images/rooms/c1.jpg';
+
   @override
   void dispose() {
     super.dispose();
@@ -40,8 +42,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
         type: _roomTypeController.text,
         description: 'Chambre ajoutée manuellement.',
         pricePerNight: int.parse(_roomPriceController.text),
-        imageUrl:
-            'assets/images/rooms/c1.jpg', // image par défaut, pas de champ upload
+        imageUrl: _selectedImage,
       );
 
       RoomRepository.add(newRoom);
@@ -96,7 +97,9 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                               label: 'Prix par nuit',
                               validator: (value) {
                                 if (value!.isEmpty) return 'Prix obligatoire';
-                                if (double.tryParse(value) == null) return 'Entrer un nombre';
+                                if (double.tryParse(value) == null) {
+                                  return 'Entrer un nombre';
+                                }
                                 return null;
                               })),
                       const SizedBox(width: 16),
@@ -108,8 +111,32 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                         validator: (value) => value!.isEmpty
                             ? 'Numéro de chambre obligatoire'
                             : null,
-                      ))
+                      )),
                     ],
+                  ),
+                  const SizedBox(height: 16),
+                  DropdownButtonFormField<String>(
+                    initialValue: _selectedImage,
+                    decoration:
+                        const InputDecoration(labelText: 'Image de la chambre'),
+                    items: const [
+                      DropdownMenuItem(
+                          value: 'assets/images/rooms/c1.jpg',
+                          child: Text('Image 1')),
+                      DropdownMenuItem(
+                          value: 'assets/images/rooms/c2.jpg',
+                          child: Text('Image 2')),
+                      DropdownMenuItem(
+                          value: 'assets/images/rooms/c3.jpg',
+                          child: Text('Image 3')),
+                      DropdownMenuItem(
+                          value: 'assets/images/rooms/c4.jpg',
+                          child: Text('Image 4')),
+                      DropdownMenuItem(
+                          value: 'assets/images/rooms/c5.jpg',
+                          child: Text('Image 5')),
+                    ],
+                    onChanged: (val) => setState(() => _selectedImage = val!),
                   ),
                 ] else ...[
                   CustomInput(
@@ -131,7 +158,9 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                     label: 'Prix par nuit',
                     validator: (value) {
                       if (value!.isEmpty) return 'Prix obligatoire';
-                      if (double.tryParse(value) == null) return 'Entrer un nombre';
+                      if (double.tryParse(value) == null) {
+                        return 'Entrer un nombre';
+                      }
                       return null;
                     },
                   ),
@@ -141,6 +170,30 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                     label: 'Numéro de chambre',
                     validator: (value) =>
                         value!.isEmpty ? 'Numéro de chambre obligatoire' : null,
+                  ),
+                  const SizedBox(height: 16),
+                  DropdownButtonFormField<String>(
+                    initialValue: _selectedImage,
+                    decoration:
+                        const InputDecoration(labelText: 'Image de la chambre'),
+                    items: const [
+                      DropdownMenuItem(
+                          value: 'assets/images/rooms/c1.jpg',
+                          child: Text('Image 1')),
+                      DropdownMenuItem(
+                          value: 'assets/images/rooms/c2.jpg',
+                          child: Text('Image 2')),
+                      DropdownMenuItem(
+                          value: 'assets/images/rooms/c3.jpg',
+                          child: Text('Image 3')),
+                      DropdownMenuItem(
+                          value: 'assets/images/rooms/c4.jpg',
+                          child: Text('Image 4')),
+                      DropdownMenuItem(
+                          value: 'assets/images/rooms/c5.jpg',
+                          child: Text('Image 5')),
+                    ],
+                    onChanged: (val) => setState(() => _selectedImage = val!),
                   ),
                 ],
                 const SizedBox(height: 24),
