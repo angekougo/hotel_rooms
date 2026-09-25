@@ -108,7 +108,7 @@ if (room == null) {
 
 ### Formulaire avec validation (au moins 3 champs)
 
-`lib/screens/add_room_screen.dart` a 4 champs validés (nom, type, prix, numéro), chacun avec son `validator`. Exemple (lignes 115-119) :
+`lib/screens/add_room_screen.dart` a 4 champs validés (nom, type, prix, numéro), chacun avec son `validator`. Exemple (lignes 142-147, dans la mise en page mobile) :
 ```dart
 CustomInput(
   controller: _roomNameController,
@@ -116,7 +116,7 @@ CustomInput(
   validator: (value) => value!.isEmpty ? 'Nom obligatoire' : null,
 ),
 ```
-Le champ prix vérifie aussi que c'est bien un nombre (lignes 132-136) :
+Le champ prix vérifie aussi que c'est bien un nombre (lignes 156-166) :
 ```dart
 validator: (value) {
   if (value!.isEmpty) return 'Prix obligatoire';
@@ -124,6 +124,7 @@ validator: (value) {
   return null;
 },
 ```
+Un cinquième champ (image) utilise un `DropdownButtonFormField` plutôt qu'un `CustomInput` — voir la section "Aucune donnée hardcodée" plus bas.
 Le tout est testé dans `test/screens/add_room_screen_test.dart` — soumission valide qui ajoute bien la chambre, soumission vide qui n'ajoute rien et affiche les erreurs.
 
 ### Gestion du thème clair/sombre
@@ -152,13 +153,13 @@ Le bouton pour basculer est un `FloatingActionButton` global (lignes 43-46).
 
 | Widget | Fichier | Ligne |
 |---|---|---|
-| `ListView` | `lib/screens/add_room_screen.dart` | 67 |
+| `ListView` | `lib/screens/add_room_screen.dart` | 68 |
 | `GridView.builder` | `lib/screens/rooms_list_screen.dart` | 102 |
 | `Stack` | `lib/screens/home_screen.dart` | 12 |
 | `Card` | `lib/widgets/custom_room_card.dart` | 13 |
 | `ClipRRect` | `lib/widgets/custom_room_card.dart` | 21 |
-| `Form` | `lib/screens/add_room_screen.dart` | 64 |
-| `DropdownButtonFormField` / `DropdownButton` | `add_room_screen.dart` / `rooms_list_screen.dart` | 147 / 72 |
+| `Form` | `lib/screens/add_room_screen.dart` | 65 |
+| `DropdownButtonFormField` / `DropdownButton` | `add_room_screen.dart` / `rooms_list_screen.dart` | 118 / 72 |
 | `InkWell` | `lib/widgets/custom_room_card.dart` | 16 |
 | `TextField` | `lib/screens/rooms_list_screen.dart` | 57 |
 | `TextFormField` | `lib/widgets/custom_input.dart` | 18 |
@@ -179,7 +180,7 @@ Les 4 écrans s'adaptent, avec le même seuil (600px) partout :
 | `HomeScreen` | `home_screen.dart` | 20 | `LayoutBuilder` |
 | `RoomsListScreen` | `rooms_list_screen.dart` | 38-39 | `MediaQuery`, grille 2 → 3 colonnes |
 | `RoomDetailScreen` | `room_detail_screen.dart` | 26-28 | `LayoutBuilder`, empilé → côte à côte |
-| `AddRoomScreen` | `add_room_screen.dart` | 58 | `MediaQuery`, champs empilés → en paires |
+| `AddRoomScreen` | `add_room_screen.dart` | 59 | `MediaQuery`, champs empilés → en paires |
 
 ### Aucune donnée hardcodée dans les widgets
 
@@ -189,7 +190,7 @@ static List<Room> getAll() => List.unmodifiable(_rooms);
 static Room? getById(String id) { ... }
 static void add(Room room) { ... }
 ```
-Et `AddRoomScreen` ne fixe plus une image par défaut en dur — l'utilisateur la choisit dans un menu déroulant (lignes 147-170), stockée dans `_selectedImage`.
+Et `AddRoomScreen` ne fixe plus une image par défaut en dur — l'utilisateur la choisit dans un menu déroulant (`DropdownButtonFormField`, lignes 118-140 en tablette et 175-197 en mobile, puisque les deux mises en page ont chacune leur propre bloc), stockée dans `_selectedImage` (déclarée ligne 23, utilisée ligne 45).
 
 ---
 
