@@ -194,6 +194,7 @@ Et `AddRoomScreen` ne fixe plus une image par défaut en dur — l'utilisateur l
 ---
 
 ## Architecture
+```
 lib/
 ├── datas/
 │   └── room_repository.dart      # seule source de données (RoomRepository)
@@ -225,7 +226,7 @@ test/
 │   └── add_room_screen_test.dart
 └── utils/
     └── room_filter_test.dart
-
+```
 
 ## Ce que je changerais si je continuais ce projet
 
